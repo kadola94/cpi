@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <mpi.h>
 #include <math.h>
+#include "gettime.h"
+
 
 /*
  * The Basic Idea: 
@@ -30,6 +32,7 @@ int main(int argc, char *argv[])
     int myid, numprocs, resultlen;
     char name[MPI_MAX_PROCESSOR_NAME] ; 
 
+    double start = getTime();
     MPI_Init(&argc,&argv);
 
     /* Do this FIRST (to avoid error)  */    
@@ -82,6 +85,8 @@ int main(int argc, char *argv[])
         printf("wall clock time = %f\n", endwtime-startwtime); 
     }
     MPI_Finalize();
+    double delta = getTime() - start;
+    printf("The execution time was: %.6f seconds \n", delta);
     return 0;
 }
 

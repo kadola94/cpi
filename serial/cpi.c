@@ -1,16 +1,12 @@
 #include <stdio.h>
 #include <sys/time.h>
+#include "gettime.h"
 
 static long steps = 1000000000;
 
-double getTime(void) {
-    struct timeval tv;
-    struct timezone tz;
-    gettimeofday(&tv, &tz);
-    return tv.tv_sec + 1e-6*(double)tv.tv_usec;
-}
 
-int main (int argc, const char *argv[]) {
+int main (int argc, const char *argv[])
+{
     int i;
     double x;
     double pi;
